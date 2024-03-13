@@ -5,7 +5,6 @@ import com.db4o.ObjectContainer;
 import com.db4o.Db4o;
 import com.db4o.ObjectSet;
 import com.db4o.query.Query;
-import java.util.Scanner;
 
 
 public class TrabalhoFlavio {
@@ -15,7 +14,6 @@ public class TrabalhoFlavio {
         db = Db4o.openFile("meubanco.db0");
         
         Lista lista = new Lista();
-        Scanner scanner = new Scanner(System.in);
         
         boolean continuar;   
         String escolha;
@@ -26,13 +24,14 @@ public class TrabalhoFlavio {
             
             
             escolha = JOptionPane.showInputDialog(null, ""
-                    + "---------- Menu --------------"
+                    + "-------------- Menu --------------"
                     + "\n1 - Adicionar Anime "
                 + "\n2 - Adicionar Filme"
                 + "\n3 - Atualizar"
                 + "\n4 - Deletar"
                 + "\n5 - Visualizar a Lista"
                 + "\n6 - Sair do Programa"
+                + "\n-----------------------------------"
                 + "");
             
             
@@ -41,22 +40,22 @@ public class TrabalhoFlavio {
         
         switch (escolhaC) {
             case 1:
-                cadastrarAnime(db, scanner, lista);
+                cadastrarAnime(db, lista);
                 break;
             case 2:
-                cadastrarFilme(db, scanner, lista);
+                cadastrarFilme(db, lista);
                 break;
                 
             case 3:
-                atualizarLista(db, scanner, lista);
+                atualizarLista(db, lista);
                 break;
                 
             case 4:
-                deletarLista(db, scanner, lista);
+                deletarLista(db, lista);
                 break;
                 
             case 5:
-                visualizarLista(db, scanner);
+                visualizarLista(db);
                 break;
                 
             case 6:
@@ -66,7 +65,7 @@ public class TrabalhoFlavio {
         }
     }
     
-    public static void cadastrarAnime (ObjectContainer db, Scanner scanner, Lista lista) 
+    public static void cadastrarAnime (ObjectContainer db,  Lista lista) 
     { 
             String nota;
             int notaTemporaria;
@@ -85,7 +84,7 @@ public class TrabalhoFlavio {
             db.store(lista);
     }
     
-    public static void cadastrarFilme (ObjectContainer db, Scanner scanner, Lista lista) 
+    public static void cadastrarFilme (ObjectContainer db, Lista lista) 
     {
             String nota;
             int notaTemporaria;
@@ -104,7 +103,7 @@ public class TrabalhoFlavio {
             db.store(lista);  
     }
     
-    public static void atualizarLista (ObjectContainer db, Scanner scanner, Lista lista) 
+    public static void atualizarLista (ObjectContainer db,  Lista lista) 
     {
         String nome;
         
@@ -142,7 +141,7 @@ public class TrabalhoFlavio {
         }
     }
     
-    public static void deletarLista (ObjectContainer db, Scanner scanner, Lista lista)
+    public static void deletarLista (ObjectContainer db, Lista lista)
     {
         String nome = JOptionPane.showInputDialog(null, "Digite o nome da Obra a ser atualizada");
         
@@ -163,7 +162,7 @@ public class TrabalhoFlavio {
         }
     }
 
-    public static void visualizarLista (ObjectContainer db, Scanner scanner) 
+    public static void visualizarLista (ObjectContainer db) 
     {
         ObjectSet<Lista> lista = db.query(Lista.class);
         
